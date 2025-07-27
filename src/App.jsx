@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { signInAnonymously, signInWithCustomToken, onAuthStateChanged } from 'firebase/auth';
 import { collection, addDoc, query, onSnapshot, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from './firebase'; // ✅ importing from firebase.js
+import { auth, db } from './firebase'; // importing from firebase.js
 
-// Simulated app ID and auth token fallback
+
 const appId = 'default-app-id';
-const initialAuthToken = null; // You can replace this with your logic if needed
+const initialAuthToken = null; 
 
 function App() {
   const [newsText, setNewsText] = useState('');
@@ -17,7 +17,7 @@ function App() {
   const [isAuthReady, setIsAuthReady] = useState(false);
   const debounceTimeoutRef = useRef(null);
 
-  // ✅ Firebase Auth Setup
+  //  Firebase Auth Setup
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       try {
@@ -41,7 +41,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // ✅ Firestore: Load prediction history
+  // Firestore: Load prediction history
   useEffect(() => {
     if (db && userId && isAuthReady) {
       const predictionsRef = collection(db, `artifacts/${appId}/users/${userId}/predictions`);
@@ -63,7 +63,7 @@ function App() {
     }
   }, [db, userId, isAuthReady]);
 
-  // ✅ Fake news detection logic
+  //  Fake news detection logic
   const simulatePrediction = (text) => {
     const t = text.toLowerCase();
     let isFake = false;
@@ -77,7 +77,7 @@ function App() {
     return isFake || Math.random() < 0.4 ? 'Fake News' : 'Not Fake News';
   };
 
-  // ✅ Input handling
+  // Input handling
   const handleNewsTextChange = (e) => {
     const text = e.target.value;
     setNewsText(text);

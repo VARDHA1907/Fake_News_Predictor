@@ -3,8 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// ✅ Your Firebase config (correct values)
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDPFIhrL9iTi06wme8HUcm1B2Mc6IdoJnI",
   authDomain: "fake-news-detection-app-b1ebe.firebaseapp.com",
